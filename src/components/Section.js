@@ -15,14 +15,26 @@ class Section extends Component {
         ]
     };
   }
-  addNewSubsection(newSec) {
+  handleOnChange(e) {
+    const subsection = this.state.subsection;
+    subsection[0].subname = e.target.value;
+    this.forceUpdate();
+  }
+
+  addNewSubsection(newName) {
+    //  map obj and save them in const and setState to subname
+    //concat everything into the main object
+    const newSec = {
+      subname: newName
+    };
     this.setState({
         subsection: this.state.subsection.concat(newSec)
     });
+    console.log('parent', this.state.subsection);
   }
-  
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div style={styles.containerStyle}>
         {/*section name  */}
@@ -43,7 +55,9 @@ class Section extends Component {
         </Row>
         {/*subsection component*/}
         <Subsection
-          subsection={this.state.subsection} addNewSubsection={this.addNewSubsection.bind(this)}
+          subsection={this.state.subsection}
+          handleOnChange={this.handleOnChange.bind(this)}
+          addNewSubsection={this.addNewSubsection.bind(this)}
         />
         {/*Submit whole page  */}
         <br />

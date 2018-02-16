@@ -1,34 +1,40 @@
 import React, { Component } from 'react';
 import { Row, Input, Icon, Button } from 'react-materialize';
 // import Iframe from 'react-iframe';
-import AddSubBtn from '../buttons/AddSubBtn';
+// import AddSubBtn from '../buttons/AddSubBtn';
 
 class Subsection extends Component {
-  // handleShareholderNameChange = (idx) => (evt) => {
-  //   const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
-  //     if (idx !== sidx) return shareholder;
-  //     return { ...shareholder, name: evt.target.value };
+
+  // handleInput = (idx) => (event) => {
+  //   const newSubName = this.props.subsection.map((sub, sidx) => {
+  //     if (idx !== sidx) return sub;
+  //     return { ...sub, subname: event.target.value };
   //   });
-  //
-  //   this.setState({ shareholders: newShareholders });
+  //   this.setState({ subsection: newSubName });
   // }
-
-  handleContextChange = (idx) => (event) => {
-    const newSection = this.props.subsection.map((sub, sidx) => {
-      if (idx !== sidx) return sub;
-      return { ...sub, subname: event.target.value };
-    });
-    this.setState({ subsection: newSection });
-  }
-
+  // handleContextChange = (event) => {
+  //   // console.log(window.event.target);
+  //   const subsection = this.props.subsection;
+  //   subsection[0].subname = event.target.value;
+  //   this.forceUpdate();
+  // }
+  // state = { input: '' };
+  // updateInput(e) {
+  //   this.setState({
+  //     input: e.target.value
+  //   });
+  //   console.log('child', this.state.input);
+  // }
   renderSubsection() {
-    return this.props.subsection.map((sub, idx) => {
+    const { subsection, handleOnChange } = this.props;
+    return subsection.map((sub, idx) => {
       return (
-        <Row key={sub.subname}>
+        <Row key={idx}>
           <h5>Name:</h5>
           <Input
             s={12}
-            onChange={this.handleContextChange(idx)}
+            // onChange={this.updateInput.bind(this)}
+            onChange={handleOnChange}
             value={sub.subname}
           />
           <h5>Video album <Icon>clear</Icon></h5>
@@ -40,12 +46,16 @@ class Subsection extends Component {
   }
 
   render() {
-    // console.log(this.props);
+    // console.log(this.state.value);
     return (
           <div>
             {this.renderSubsection()}
             <Row>
-              <AddSubBtn button='Add New' addNewSubsection={this.props.addNewSubsection} />
+              {/* <AddSubBtn
+                button='Add New'
+                addNewSubsection={this.props.addNewSubsection}
+              /> */}
+              <Button onClick={() => this.props.addNewSubsection(this.state.input)}>Add</Button>
             </Row>
           </div>
       );
