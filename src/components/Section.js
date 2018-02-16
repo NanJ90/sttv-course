@@ -1,25 +1,53 @@
 import React, { Component } from 'react';
 import { Row, Input, Icon, Button } from 'react-materialize';
-import SubmitBtn from './SubmitBtn';
+import SubmitBtn from '../buttons/SubmitBtn';
 import Subsection from '../subsection/Subsection';
 
 class Section extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      subsection: [
+          {
+            subname: ''
+          }
+        ]
+    };
+  }
+  addNewSubsection(newSec) {
+    this.setState({
+        subsection: this.state.subsection.concat(newSec)
+    });
+  }
+  
   render() {
+    console.log(this.state);
     return (
-      <div style={{ textAlign: 'center' }}>
+      <div style={styles.containerStyle}>
+        {/*section name  */}
         <Row>
-          <h3>Course</h3>
+          <h5>Course:</h5>
           <Input s={12} />
         </Row>
-
+        {/*intro video*/}
         <Row>
-          <h3>Upload</h3>
-          <a><Icon large>folder</Icon></a>
+          <h5>Upload</h5>
+          <a href='#'><Icon large>folder</Icon></a>
           <Input s={12} type='radio' value='add_to_trial' label="included in trial" />
         </Row>
-
+        {/*resource/workshit*/}
         <Row>
-          <Subsection />
+          <h5>Worksheet:</h5>
+          <a href="#"><Icon large>folder</Icon></a>
+        </Row>
+        {/*subsection component*/}
+        <Subsection
+          subsection={this.state.subsection} addNewSubsection={this.addNewSubsection.bind(this)}
+        />
+        {/*Submit whole page  */}
+        <br />
+        <Row>
           <Button>
             <SubmitBtn submit='submit' />
           </Button>
@@ -28,5 +56,11 @@ class Section extends Component {
     );
   }
 }
+
+const styles = {
+  containerStyle: {
+    textAlign: 'center'
+  }
+};
 
 export default Section;

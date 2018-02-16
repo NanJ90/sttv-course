@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const VENDOR_LIBS = [
-  'react', 'faker', 'react-dom', 'lodash'
+  'react', 'faker', 'react-dom', 'lodash', 'react-iframe','react-materialize'
 ];
 
 module.exports = {
@@ -28,6 +28,12 @@ module.exports = {
       {
         use: ['style-loader', 'css-loader'],
         test: /\.css$/
+      },
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+        exclude: /node_modules/
       }
     ]
   },
@@ -40,6 +46,7 @@ module.exports = {
       path.resolve(__dirname, 'dist'),
     ]
   },
+  devtool: '#eval-source-map',
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
