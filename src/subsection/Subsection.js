@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Input, Icon, Button } from 'react-materialize';
-// import Iframe from 'react-iframe';
+import { Row, Input, Icon } from 'react-materialize';
 import AddSubBtn from '../buttons/AddSubBtn';
 
 class Subsection extends Component {
-
   renderSubsection() {
     const { subsection, handleOnChange } = this.props;
     return subsection.map((sub, idx) => {
@@ -13,7 +11,6 @@ class Subsection extends Component {
           <h5>Name:</h5>
           <Input
             s={12}
-            // onChange={this.updateInput.bind(this)}
             onChange={() => handleOnChange(idx)}
             value={sub.subname}
           />
@@ -26,7 +23,6 @@ class Subsection extends Component {
   }
 
   render() {
-    // console.log(this.state.value);
     return (
           <div>
             {this.renderSubsection()}
@@ -35,7 +31,6 @@ class Subsection extends Component {
                 button='Add New'
                 addNewSubsection={this.props.addNewSubsection}
               />
-              {/* <Button onClick={() => this.props.addNewSubsection()}>Add</Button> */}
             </Row>
           </div>
       );

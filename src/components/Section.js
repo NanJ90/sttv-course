@@ -16,21 +16,15 @@ class Section extends Component {
     };
   }
   handleOnChange(e, idx) {
-      const newSubObj = this.state.subsection.map((sub, sidx) => {
-        if (idx !== sidx) return sub;
-        return { ...sub, subname: e.target.value };
-      });
-      this.setState({ subsection: newSubObj });
-    // const subsection = this.state.subsection;
-    // subsection[0].subname = e.target.value;
-    // this.forceUpdate();
+    const subsection = this.state.subsection;
+    subsection[idx].subname = e.target.value;
+    this.forceUpdate();
   }
 
   addNewSubsection() {
     this.setState({
         subsection: this.state.subsection.concat([{ subname: '' }])
     });
-    // console.log('parent', this.state.subsection);
   }
 
   render() {
