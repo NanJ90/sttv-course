@@ -15,22 +15,22 @@ class Section extends Component {
         ]
     };
   }
-  handleOnChange(e) {
-    const subsection = this.state.subsection;
-    subsection[0].subname = e.target.value;
-    this.forceUpdate();
+  handleOnChange(e, idx) {
+      const newSubObj = this.state.subsection.map((sub, sidx) => {
+        if (idx !== sidx) return sub;
+        return { ...sub, subname: e.target.value };
+      });
+      this.setState({ subsection: newSubObj });
+    // const subsection = this.state.subsection;
+    // subsection[0].subname = e.target.value;
+    // this.forceUpdate();
   }
 
-  addNewSubsection(newName) {
-    //  map obj and save them in const and setState to subname
-    //concat everything into the main object
-    const newSec = {
-      subname: newName
-    };
+  addNewSubsection() {
     this.setState({
-        subsection: this.state.subsection.concat(newSec)
+        subsection: this.state.subsection.concat([{ subname: '' }])
     });
-    console.log('parent', this.state.subsection);
+    // console.log('parent', this.state.subsection);
   }
 
   render() {
