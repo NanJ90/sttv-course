@@ -11,7 +11,7 @@ class Subsection extends Component {
           <h5>Name:</h5>
           <Input
             s={12}
-            onChange={() => handleOnChange(idx)}
+            onChange={event => handleOnChange(event, idx)}
             value={sub.subname}
           />
           <h5>Video album <Icon>clear</Icon></h5>
