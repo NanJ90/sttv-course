@@ -15,6 +15,11 @@ class Section extends Component {
         ]
     };
   }
+  handleCourseChange(e) {
+    this.setState({
+      name: e.target.value
+    });
+  }
   handleOnChange(e, idx) {
     const subsection = this.state.subsection;
     subsection[idx].subname = e.target.value;
@@ -30,30 +35,47 @@ class Section extends Component {
         subsection: this.state.subsection.concat([{ subname: '' }])
     });
   }
+  handleSubmit() {
+    this.setState({
+      name: '',
+      subsection: [
+          {
+            subname: ''
+          }
+        ]
+    });
+    window.location.reload();
+  }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div style={styles.containerStyle}>
         {/*section name  */}
         <Row>
           <h5>Course:</h5>
-          <Input s={12} />
+          <Input
+            s={12}
+            value={this.state.name}
+            onChange={this.handleCourseChange.bind(this)}
+          />
         </Row>
         {/*intro video*/}
         <Row>
           <h5>Upload</h5>
-          <a href='#'><Icon large>folder</Icon></a>
+          <a><Icon large>folder</Icon></a>
           <Input
             s={12}
             type='checkbox'
             value='add_to_trial'
             label="included in trial"
+            // checked={this.state.isTrial}
+            // onChange={this.handleincludeTrial.bind(this)}
           />
         </Row>
         {/*resource/workshit*/}
         <Row>
           <h5>Worksheet:</h5>
-          <a href="#"><Icon large>folder</Icon></a>
+          <a><Icon large>folder</Icon></a>
         </Row>
         {/*subsection component*/}
         <Subsection
@@ -66,7 +88,7 @@ class Section extends Component {
         <br />
         <Row>
           <Button>
-            <SubmitBtn submit='submit' />
+            <SubmitBtn submit='submit' handleSubmit={this.handleSubmit.bind(this)} />
           </Button>
         </Row>
       </div>

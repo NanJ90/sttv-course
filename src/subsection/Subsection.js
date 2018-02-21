@@ -25,7 +25,7 @@ class Subsection extends Component {
             value={sub.subname}
           />
           <h5>Video album</h5>
-          <a href='#' s={12}><Icon large>attach_file</Icon></a>
+          <a s={12}><Icon large>attach_file</Icon></a>
           <Input
             s={12}
             type='checkbox'

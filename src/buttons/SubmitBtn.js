@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SubmitBtn = ({ submit }) => {
+const SubmitBtn = ({ submit, handleSubmit }) => {
   return (
-    <div>
+    <div onClick={() => handleSubmit()} >
       {submit}
     </div>
   );
