@@ -15,6 +15,7 @@ class Subsection extends Component {
   renderSubsection() {
     const { subsection, handleOnChange, deleteSubsection } = this.props;
     return subsection.map((sub, idx) => {
+      // console.log();
       return (
         <Row key={idx}>
           <h5>Name:<a onClick={deleteSubsection(idx)}><Icon>clear</Icon></a></h5>
@@ -25,7 +26,12 @@ class Subsection extends Component {
           />
           <h5>Video album</h5>
           <a href='#' s={12}><Icon large>attach_file</Icon></a>
-          <Input s={12}type='radio' value='add_to_trial' label="included in trial" />
+          <Input
+            s={12}
+            type='checkbox'
+            value='add_to_trial'
+            label="included in trial"
+          />
         </Row>
       );
     });

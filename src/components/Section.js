@@ -30,9 +30,8 @@ class Section extends Component {
         subsection: this.state.subsection.concat([{ subname: '' }])
     });
   }
-
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     return (
       <div style={styles.containerStyle}>
         {/*section name  */}
@@ -44,7 +43,12 @@ class Section extends Component {
         <Row>
           <h5>Upload</h5>
           <a href='#'><Icon large>folder</Icon></a>
-          <Input s={12} type='radio' value='add_to_trial' label="included in trial" />
+          <Input
+            s={12}
+            type='checkbox'
+            value='add_to_trial'
+            label="included in trial"
+          />
         </Row>
         {/*resource/workshit*/}
         <Row>
