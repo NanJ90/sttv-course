@@ -20,7 +20,11 @@ class Section extends Component {
     subsection[idx].subname = e.target.value;
     this.forceUpdate();
   }
-
+  deleteSubsection = (idx) => () => {
+    this.setState({
+      subsection: this.state.subsection.filter((sub, _idx) => _idx !== idx),
+    });
+  }
   addNewSubsection() {
     this.setState({
         subsection: this.state.subsection.concat([{ subname: '' }])
@@ -51,6 +55,7 @@ class Section extends Component {
         <Subsection
           subsection={this.state.subsection}
           handleOnChange={this.handleOnChange.bind(this)}
+          deleteSubsection={this.deleteSubsection.bind(this)}
           addNewSubsection={this.addNewSubsection.bind(this)}
         />
         {/*Submit whole page  */}
