@@ -15,7 +15,6 @@ class Subsection extends Component {
   renderSubsection() {
     const { subsection, handleOnChange, deleteSubsection } = this.props;
     return subsection.map((sub, idx) => {
-      // console.log();
       return (
         <Row key={idx}>
           <h5>Name:<a onClick={deleteSubsection(idx)}><Icon>clear</Icon></a></h5>

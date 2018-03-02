@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const VENDOR_LIBS = [
-  'react', 'faker', 'react-dom', 'lodash', 'react-iframe', 'react-materialize'
+  'react', 'faker', 'react-dom', 'redux', 'react-redux', 'redux-form', 'lodash', 'react-iframe', 'react-materialize'
 ];
 
 module.exports = {

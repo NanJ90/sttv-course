@@ -1,51 +1,40 @@
 import React, { Component } from 'react';
 import { Row, Input, Icon, Button } from 'react-materialize';
-import SubmitBtn from '../buttons/SubmitBtn';
-import Subsection from '../subsection/Subsection';
+// import SubmitBtn from '../buttons/SubmitBtn';
+// import Subsection from '../subsection/Subsection';
 
 class Section extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      subsection: [
-          {
-            subname: ''
-          }
-        ]
-    };
-  }
-  handleCourseChange(e) {
-    this.setState({
-      name: e.target.value
-    });
-  }
-  handleOnChange(e, idx) {
-    const subsection = this.state.subsection;
-    subsection[idx].subname = e.target.value;
-    this.forceUpdate();
-  }
-  deleteSubsection = (idx) => () => {
-    this.setState({
-      subsection: this.state.subsection.filter((sub, _idx) => _idx !== idx),
-    });
-  }
-  addNewSubsection() {
-    this.setState({
-        subsection: this.state.subsection.concat([{ subname: '' }])
-    });
-  }
-  handleSubmit() {
-    this.setState({
-      name: '',
-      subsection: [
-          {
-            subname: ''
-          }
-        ]
-    });
-    window.location.reload();
-  }
+  // handleCourseChange(e) {
+  //   this.setState({
+  //     name: e.target.value
+  //   });
+  // }
+  // handleOnChange(e, idx) {
+  //   const subsection = this.state.subsection;
+  //   subsection[idx].subname = e.target.value;
+  //   this.forceUpdate();
+  // }
+  // deleteSubsection = (idx) => () => {
+  //   this.setState({
+  //     subsection: this.state.subsection.filter((sub, _idx) => _idx !== idx),
+  //   });
+  // }
+  // addNewSubsection() {
+  //   this.setState({
+  //       subsection: this.state.subsection.concat([{ subname: '' }])
+  //   });
+  // }
+  // handleSubmit() {
+  //   this.setState({
+  //     name: '',
+  //     subsection: [
+  //         {
+  //           subname: ''
+  //         }
+  //       ]
+  //   });
+  //   window.location.reload();
+  // }
   render() {
     // console.log(this.state);
     return (
@@ -55,8 +44,8 @@ class Section extends Component {
           <h5>Course:</h5>
           <Input
             s={12}
-            value={this.state.name}
-            onChange={this.handleCourseChange.bind(this)}
+            // value={this.state.name}
+            // onChange={this.handleCourseChange.bind(this)}
           />
         </Row>
         {/*intro video*/}
@@ -78,19 +67,19 @@ class Section extends Component {
           <a><Icon large>folder</Icon></a>
         </Row>
         {/*subsection component*/}
-        <Subsection
+        {/* <Subsection
           subsection={this.state.subsection}
           handleOnChange={this.handleOnChange.bind(this)}
           deleteSubsection={this.deleteSubsection.bind(this)}
           addNewSubsection={this.addNewSubsection.bind(this)}
-        />
+        /> */}
         {/*Submit whole page  */}
-        <br />
+        {/* <br />
         <Row>
           <Button>
             <SubmitBtn submit='submit' handleSubmit={this.handleSubmit.bind(this)} />
           </Button>
-        </Row>
+        </Row> */}
       </div>
     );
   }
