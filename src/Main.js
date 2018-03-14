@@ -11,9 +11,6 @@ const Main = (props) => {
       <Field name='courseName' component={Course} />
       <FieldArray name='section' component={Section} title='Section' />
       <FieldArray name='practice' component={Practice} title='Practice' />
-      {/* <div>
-        <BtnGroup />
-      </div> */}
       <div>
         <button type="submit" disabled={submitting}>Submit</button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
