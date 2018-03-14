@@ -1,94 +1,50 @@
-import React, { Component } from 'react';
-import { Row, Input, Icon, Button } from 'react-materialize';
-// import SubmitBtn from '../buttons/SubmitBtn';
-// import Subsection from '../subsection/Subsection';
+import React from 'react';
+import { Field, FieldArray, reduxForm } from 'redux-form';
+import Subsection from './Subsection';
 
-class Section extends Component {
-  // handleCourseChange(e) {
-  //   this.setState({
-  //     name: e.target.value
-  //   });
-  // }
-  // handleOnChange(e, idx) {
-  //   const subsection = this.state.subsection;
-  //   subsection[idx].subname = e.target.value;
-  //   this.forceUpdate();
-  // }
-  // deleteSubsection = (idx) => () => {
-  //   this.setState({
-  //     subsection: this.state.subsection.filter((sub, _idx) => _idx !== idx),
-  //   });
-  // }
-  // addNewSubsection() {
-  //   this.setState({
-  //       subsection: this.state.subsection.concat([{ subname: '' }])
-  //   });
-  // }
-  // handleSubmit() {
-  //   this.setState({
-  //     name: '',
-  //     subsection: [
-  //         {
-  //           subname: ''
-  //         }
-  //       ]
-  //   });
-  //   window.location.reload();
-  // }
-  render() {
-    // console.log(this.state);
-    return (
-      <div style={styles.containerStyle}>
-        {/*section name  */}
-        <Row>
-          <h5>Course:</h5>
-          <Input
-            s={12}
-            // value={this.state.name}
-            // onChange={this.handleCourseChange.bind(this)}
-          />
-        </Row>
-        {/*intro video*/}
-        <Row>
-          <h5>Upload</h5>
-          <a><Icon large>folder</Icon></a>
-          <Input
-            s={12}
-            type='checkbox'
-            value='add_to_trial'
-            label="included in trial"
-            // checked={this.state.isTrial}
-            // onChange={this.handleincludeTrial.bind(this)}
-          />
-        </Row>
-        {/*resource/workshit*/}
-        <Row>
-          <h5>Worksheet:</h5>
-          <a><Icon large>folder</Icon></a>
-        </Row>
-        {/*subsection component*/}
-        {/* <Subsection
-          subsection={this.state.subsection}
-          handleOnChange={this.handleOnChange.bind(this)}
-          deleteSubsection={this.deleteSubsection.bind(this)}
-          addNewSubsection={this.addNewSubsection.bind(this)}
-        /> */}
-        {/*Submit whole page  */}
-        {/* <br />
-        <Row>
-          <Button>
-            <SubmitBtn submit='submit' handleSubmit={this.handleSubmit.bind(this)} />
-          </Button>
-        </Row> */}
-      </div>
-    );
-  }
-}
+const renderInput = ({ input, meta, label }) =>
+  <div>
+    <label htmlFor={label}>{label}</label>
+    <input {...input} />
+  </div>
 
-const styles = {
-  containerStyle: {
-    textAlign: 'center'
-  }
+const Section = ({ title, fields }) => {
+  return (
+  <ul>
+    <li>
+      <button type='button' onClick={() => fields.push({})}>Add Section</button>
+    </li>
+    {fields.map((course, index) =>
+      <li key={index}>
+        <button type='button' onClick={() => fields.remove(index)}>Remove Section</button>
+        <h4>{title}</h4>
+            <Field
+              name='sectionName'
+              label='Section Name'
+              component={renderInput}
+              type='text'
+              placeholder='Section name'
+            />
+          <div>
+            <label htmlFor='introVideo'>Intro Video</label>
+          </div>
+            <Field
+              name='SecDesc'
+              component='textarea'
+              label='Description'
+            />
+          <Field name='color' label='Color' component='input' type='text' />
+          <FieldArray
+            name='subsection'
+            component={Subsection}
+            title='Subsuction'
+          />
+      </li>
+)}
+    </ul>
+  );
 };
 
-export default Section;
+export default reduxForm({
+  form: 'courseSec'
+})(Section);

@@ -52,7 +52,9 @@ class MetaData extends Component {
                 :
                 null
               }
-        <a onClick={this.handleClick.bind(this)} showElement={this.showElement === true}>downloads</a>
+        <a
+          onClick={this.handleClick.bind(this)}
+          showElement={this.showElement === true}>downloads</a>
         { this.state.showElement
               ?
               <div>dowlowd</div>
